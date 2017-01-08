@@ -1,0 +1,6 @@
+code-build
+*.pro.user
+*.pyc
+secret.py
+*.json
+notes.txt

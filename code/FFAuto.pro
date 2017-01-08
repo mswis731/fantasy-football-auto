@@ -18,3 +18,6 @@ SOURCES += main.cpp\
 HEADERS  += logindialog.h
 
 FORMS    += logindialog.ui
+
+RESOURCES += \
+    Resources/resources.qrc
