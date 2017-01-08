@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = FFAuto
+TARGET = fantasy-football-auto
 TEMPLATE = app
 
 
@@ -18,3 +18,6 @@ SOURCES += main.cpp\
 HEADERS  += logindialog.h
 
 FORMS    += logindialog.ui
+
+RESOURCES += \
+    Resources/resources.qrc
