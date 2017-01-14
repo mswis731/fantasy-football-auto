@@ -1,5 +1,8 @@
 code-build
+Users
 *.pro.user
+secret.h
+secret.cpp
 *.pyc
 secret.py
 *.json

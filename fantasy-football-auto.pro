@@ -13,11 +13,19 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        logindialog.cpp
+           logindialog.cpp \
+           mainwindow.cpp \
+           secret.cpp \
+           jsoncpp/jsoncpp.cpp
 
-HEADERS  += logindialog.h
+HEADERS  += logindialog.h \
+            mainwindow.h \
+            secret.h \
+            jsoncpp/json/json-forwards.h \
+            jsoncpp/json/json.h
 
-FORMS    += logindialog.ui
+FORMS    += logindialog.ui \
+            mainwindow.ui
 
 RESOURCES += \
     Resources/resources.qrc
