@@ -10,19 +10,31 @@
     <height>300</height>
    </rect>
   </property>
+  <property name="minimumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>400</width>
+    <height>300</height>
+   </size>
+  </property>
   <property name="windowTitle">
    <string>Log In</string>
   </property>
   <layout class="QGridLayout" name="gridLayout_2">
    <item row="0" column="0">
-    <spacer name="verticalSpacer_3">
+    <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>38</height>
+       <height>42</height>
       </size>
      </property>
     </spacer>
@@ -33,18 +45,68 @@
       <string/>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="1">
-       <spacer name="verticalSpacer">
-        <property name="orientation">
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
+      <item row="0" column="0" colspan="3">
+       <widget class="QFrame" name="frame">
+        <property name="minimumSize">
          <size>
-          <width>20</width>
-          <height>40</height>
+          <width>0</width>
+          <height>35</height>
          </size>
         </property>
-       </spacer>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>104</width>
+             <height>14</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="incorrect_password_label">
+           <property name="styleSheet">
+            <string notr="true">QLabel { color: red; }</string>
+           </property>
+           <property name="text">
+            <string>Incorrect Password</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>103</width>
+             <height>14</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label">
@@ -62,7 +124,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1" colspan="2">
+      <item row="1" column="1">
        <widget class="QLineEdit" name="username_line">
         <property name="echoMode">
          <enum>QLineEdit::Normal</enum>
@@ -88,7 +150,7 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1" colspan="2">
+      <item row="2" column="1">
        <widget class="QLineEdit" name="password_line">
         <property name="echoMode">
          <enum>QLineEdit::Password</enum>

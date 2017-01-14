@@ -21,6 +21,8 @@ LoginDialog::LoginDialog(QWidget *parent, std::string users_dir, std::string *pa
                                                                                       chosen_path(path) {
     ui->setupUi(this);
     setWindowFlags(Qt::WindowCloseButtonHint | Qt::WindowMinimizeButtonHint);
+
+    ui->incorrect_password_label->setVisible(false);
 }
 
 LoginDialog::~LoginDialog() {
@@ -28,6 +30,8 @@ LoginDialog::~LoginDialog() {
 }
 
 void LoginDialog::on_login_btn_clicked() {
+    ui->incorrect_password_label->setVisible(false);
+
     std::string user = ui->username_line->text().toStdString();
     std::string password = password_trans(ui->password_line->text().toStdString());
 
@@ -80,6 +84,7 @@ void LoginDialog::on_login_btn_clicked() {
         if(password.compare(actual)) {
             ui->password_line->setFocus();
             ui->password_line->clear();
+            ui->incorrect_password_label->setVisible(true);
             return;
         }
     }
