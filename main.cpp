@@ -15,11 +15,11 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     // load configuration settings
-    Json::Value root;
+    Json::Value config_root;
     Json::Reader reader;
 
-    std::ifstream config_stream("config.json", std::ifstream::binary);
-    bool success = reader.parse(config_stream, root);
+    std::ifstream stream("config.json", std::ifstream::binary);
+    bool success = reader.parse(stream, config_root);
     if(!success) {
         QMessageBox::critical(NULL,
                               "Configuration File Not Found",
@@ -28,21 +28,19 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    std::string users_dir = root["users_dir"].asString();
+    std::string users_dir = config_root["users_dir"].asString();
 
     std::string path = "";
     LoginDialog w1(NULL, users_dir, &path);
     w1.exec();
 
-    if(!path.compare("")) {
+    if(path.empty()) {
         a.quit();
         return 0;
     }
 
     MainWindow w2(NULL, path);
-    w2.show();
-
-    // TODO: fix bug where a.exec() hangs up if MainWindow is not opened
+    w2.showMaximized();
 
     return a.exec();
 }

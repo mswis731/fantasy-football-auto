@@ -20,6 +20,7 @@ SOURCES += main.cpp\
 
 HEADERS  += logindialog.h \
             mainwindow.h \
+            defines.h \
             secret.h \
             jsoncpp/json/json-forwards.h \
             jsoncpp/json/json.h
