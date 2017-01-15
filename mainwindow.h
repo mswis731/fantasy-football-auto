@@ -19,6 +19,9 @@ public slots:
     void on_trans_up_btn_clicked();
     void on_trans_down_btn_clicked();
     void on_trans_remove_btn_clicked();
+    void on_trans_add_btn_clicked();
+    void on_trans_reset_btn_clicked();
+    void on_trans_save_btn_clicked();
 
 private:
     Ui::MainWindow *ui;
@@ -26,6 +29,8 @@ private:
     void load_team(const std::string & team);
     void load_transactions(const std::string & team);
     void move_trans_row(bool up);
+    std::string get_user_config_path();
+    std::string get_transactions_path(const std::string & team);
 
     std::string user_dir;
     std::string curr_team;

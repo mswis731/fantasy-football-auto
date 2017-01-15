@@ -29,6 +29,7 @@ int main(int argc, char *argv[])
     }
 
     std::string users_dir = config_root["users_dir"].asString();
+    stream.close();
 
     std::string path = "";
     LoginDialog w1(NULL, users_dir, &path);

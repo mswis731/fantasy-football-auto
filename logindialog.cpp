@@ -66,6 +66,7 @@ void LoginDialog::on_login_btn_clicked() {
         config_root["password"] = password;
         config_root["teams"] = Json::Value(Json::arrayValue);
         config << config_root;
+        config.close();
     }
     // returning user
     // need to validate password
@@ -81,6 +82,7 @@ void LoginDialog::on_login_btn_clicked() {
         }
 
         std::string actual = config_root["password"].asString();
+        stream.close();
         if(password.compare(actual)) {
             ui->password_line->setFocus();
             ui->password_line->clear();

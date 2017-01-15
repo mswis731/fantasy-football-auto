@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent, std::string user_dir) : QMainWindow(pare
     ui->transactions->setHorizontalHeaderLabels(headers);
 
     // get available teams
-    std::string user_config_path = user_dir + "/" + USER_CONFIG_FILE;
+    std::string user_config_path = get_user_config_path();
     Json::Value config_root;
     Json::Reader reader;
     std::ifstream stream(user_config_path, std::ifstream::binary);
@@ -38,10 +38,13 @@ MainWindow::MainWindow(QWidget *parent, std::string user_dir) : QMainWindow(pare
         fprintf(stderr, "User config file read failed : %s\n", reader.getFormattedErrorMessages().c_str());
         fflush(stderr);
     }
+    stream.close();
 
     // load initial team
     if(!curr_team.empty())
         load_team(curr_team);
+
+    connect(ui->trans_drop_player, &QLineEdit::returnPressed, ui->trans_add_btn, &QPushButton::click);
 }
 
 MainWindow::~MainWindow() {
@@ -71,6 +74,51 @@ void MainWindow::on_trans_remove_btn_clicked() {
     }
 }
 
+void MainWindow::on_trans_add_btn_clicked() {
+    QString add = ui->trans_add_player->text();
+    QString drop = ui->trans_drop_player->text();
+    if(add.length() > 0 && drop.length() > 0) {
+        int row = ui->transactions->rowCount();
+        ui->transactions->insertRow(row);
+        ui->transactions->setItem(row, 0, new QTableWidgetItem(add));
+        ui->transactions->setItem(row, 1, new QTableWidgetItem(drop));
+
+        ui->transactions->setCurrentCell(row, 0);
+        ui->transactions->setFocus();
+    }
+}
+
+void MainWindow::on_trans_reset_btn_clicked() {
+    // clear current transactions
+    while(ui->transactions->rowCount() > 0)
+        ui->transactions->removeRow(ui->transactions->rowCount()-1);
+
+    // load from file
+    load_transactions(curr_team);
+    if(ui->transactions->rowCount() > 0) {
+        ui->transactions->setCurrentCell(0, 0);
+        ui->transactions->setFocus();
+    }
+}
+
+void MainWindow::on_trans_save_btn_clicked() {
+    Json::Value trans_root;
+
+    trans_root["team"] = curr_team;
+    trans_root["transactions"] = Json::Value(Json::arrayValue);
+    for(int row = 0; row < ui->transactions->rowCount(); row++) {
+        Json::Value transaction;
+        transaction["add"] = ui->transactions->item(row, 0)->text().toStdString();
+        transaction["drop"] = ui->transactions->item(row, 1)->text().toStdString();
+        trans_root["transactions"].append(transaction);
+    }
+
+    std::ofstream stream;
+    stream.open(get_transactions_path(curr_team), std::ofstream::out | std::ofstream::trunc);
+    stream << trans_root;
+    stream.close();
+}
+
 void MainWindow::load_team(const std::string & team) {
     load_transactions(team);
     if(ui->transactions->rowCount() > 0) {
@@ -80,12 +128,12 @@ void MainWindow::load_team(const std::string & team) {
 }
 
 void MainWindow::load_transactions(const std::string & team) {
-    std::string path = user_dir + "/" + team + "/" + TRANSACTIONS_FILE;
+    std::string path = get_transactions_path(team);
     Json::Value trans_root;
     Json::Reader reader;
 
-    std::ifstream trans_stream(path, std::ifstream::binary);
-    bool success = reader.parse(trans_stream, trans_root);
+    std::ifstream stream(path, std::ifstream::binary);
+    bool success = reader.parse(stream, trans_root);
     if(!success) {
         fprintf(stderr, "Transactions file read failed : %s\n", reader.getFormattedErrorMessages().c_str());
         fflush(stderr);
@@ -102,6 +150,8 @@ void MainWindow::load_transactions(const std::string & team) {
         ui->transactions->setItem(row, 0, new QTableWidgetItem(QString::fromUtf8(add.c_str())));
         ui->transactions->setItem(row, 1, new QTableWidgetItem(QString::fromUtf8(drop.c_str())));
     }
+
+    stream.close();
 }
 
 void MainWindow::move_trans_row(bool up) {
@@ -125,4 +175,12 @@ void MainWindow::move_trans_row(bool up) {
         ui->transactions->setCurrentCell(new_row, 0);
         ui->transactions->setFocus();
     }
+}
+
+std::string MainWindow::get_user_config_path() {
+    return user_dir + "/" + USER_CONFIG_FILE;
+}
+
+std::string MainWindow::get_transactions_path(const std::string & team) {
+    return user_dir + "/" + team + "/" + TRANSACTIONS_FILE;
 }

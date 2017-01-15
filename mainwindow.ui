@@ -19,8 +19,8 @@
      <rect>
       <x>10</x>
       <y>100</y>
-      <width>529</width>
-      <height>300</height>
+      <width>526</width>
+      <height>355</height>
      </rect>
     </property>
     <property name="maximumSize">
@@ -39,7 +39,7 @@
      <bool>false</bool>
     </property>
     <layout class="QGridLayout" name="gridLayout">
-     <item row="0" column="0" rowspan="4" colspan="5">
+     <item row="0" column="0" rowspan="5" colspan="5">
       <widget class="QTableWidget" name="transactions">
        <property name="selectionMode">
         <enum>QAbstractItemView::SingleSelection</enum>
@@ -57,7 +57,7 @@
        <column/>
       </widget>
      </item>
-     <item row="0" column="5" rowspan="2">
+     <item row="0" column="5">
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -86,7 +86,7 @@
        </property>
       </widget>
      </item>
-     <item row="0" column="7" rowspan="2">
+     <item row="0" column="7">
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -135,9 +135,25 @@
        <property name="text">
         <string>Remove</string>
        </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
-     <item row="3" column="6" rowspan="2">
+     <item row="3" column="5" colspan="3">
+      <widget class="QPushButton" name="trans_reset_btn">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Reset</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="6" rowspan="2">
       <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -150,27 +166,27 @@
        </property>
       </spacer>
      </item>
-     <item row="4" column="0">
+     <item row="5" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
         <string>Add:</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
+     <item row="5" column="1">
       <widget class="QLineEdit" name="trans_add_player"/>
      </item>
-     <item row="4" column="2">
+     <item row="5" column="2">
       <widget class="QLabel" name="label_2">
        <property name="text">
         <string>Drop:</string>
        </property>
       </widget>
      </item>
-     <item row="4" column="3">
+     <item row="5" column="3">
       <widget class="QLineEdit" name="trans_drop_player"/>
      </item>
-     <item row="4" column="4">
+     <item row="5" column="4">
       <widget class="QPushButton" name="trans_add_btn">
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
@@ -180,6 +196,38 @@
        </property>
        <property name="text">
         <string>Add</string>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0" colspan="5">
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>413</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="6" column="5" colspan="3">
+      <widget class="QPushButton" name="trans_save_btn">
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Save</string>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -226,12 +274,15 @@
       <widget class="QPushButton" name="pushButton">
        <property name="maximumSize">
         <size>
-         <width>50</width>
+         <width>70</width>
          <height>16777215</height>
         </size>
        </property>
        <property name="text">
         <string>Load</string>
+       </property>
+       <property name="autoDefault">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -255,8 +306,8 @@
      <rect>
       <x>560</x>
       <y>100</y>
-      <width>501</width>
-      <height>291</height>
+      <width>539</width>
+      <height>381</height>
      </rect>
     </property>
     <property name="title">
@@ -264,35 +315,45 @@
     </property>
     <layout class="QGridLayout" name="gridLayout_3">
      <item row="0" column="0">
-      <widget class="QComboBox" name="comboBox_2"/>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>File:</string>
+       </property>
+      </widget>
      </item>
      <item row="0" column="1">
+      <widget class="QComboBox" name="comboBox_2"/>
+     </item>
+     <item row="0" column="2">
       <widget class="QPushButton" name="pushButton_2">
        <property name="maximumSize">
         <size>
-         <width>60</width>
+         <width>70</width>
          <height>16777215</height>
         </size>
        </property>
        <property name="text">
         <string>Load</string>
        </property>
+       <property name="autoDefault">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
-     <item row="0" column="2">
+     <item row="0" column="3">
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>323</width>
+         <width>200</width>
          <height>20</height>
         </size>
        </property>
       </spacer>
      </item>
-     <item row="1" column="0" colspan="3">
+     <item row="1" column="0" colspan="4">
       <widget class="QScrollArea" name="scrollArea">
        <property name="widgetResizable">
         <bool>true</bool>
@@ -302,8 +363,8 @@
          <rect>
           <x>0</x>
           <y>0</y>
-          <width>475</width>
-          <height>218</height>
+          <width>513</width>
+          <height>308</height>
          </rect>
         </property>
        </widget>
@@ -321,13 +382,6 @@
      <height>20</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuConfigure">
-    <property name="title">
-     <string>Options</string>
-    </property>
-    <addaction name="actionConfigure"/>
-   </widget>
-   <addaction name="menuConfigure"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -345,6 +399,20 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>teams_combobox</tabstop>
+  <tabstop>pushButton</tabstop>
+  <tabstop>transactions</tabstop>
+  <tabstop>trans_add_player</tabstop>
+  <tabstop>trans_drop_player</tabstop>
+  <tabstop>trans_add_btn</tabstop>
+  <tabstop>trans_up_btn</tabstop>
+  <tabstop>trans_down_btn</tabstop>
+  <tabstop>trans_remove_btn</tabstop>
+  <tabstop>comboBox_2</tabstop>
+  <tabstop>pushButton_2</tabstop>
+  <tabstop>scrollArea</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
