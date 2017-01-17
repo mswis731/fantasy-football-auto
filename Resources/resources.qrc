@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/icon">
-        <file>black-down-arrow.png</file>
-        <file>black-up-arrow.png</file>
+        <file>refresh-icon.png</file>
     </qresource>
 </RCC>
